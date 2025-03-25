@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+void mergeAndSort(int arr1[], int size1, int arr2[], int size2, int arr3[]);
+
+
+int main() {
+    int arr1[20], arr2[20], arr3[40];
+    int i, size1, size2;
+
+
+
+ 
+    printf("Enter the size of array 1: ");
+    scanf("%d", &size1);
+    printf("Enter %d elements in array 1:\n", size1);
+    for(i = 0; i < size1; i++)
+        scanf("%d", &arr1[i]);
+
+
+    printf("Enter the size of array 2: ");
+    scanf("%d", &size2);
+    printf("Enter %d elements in array 2:\n", size2);
+    for(i = 0; i < size2; i++)
+        scanf("%d", &arr2[i]);
+
+
+   mergeAndSort(arr1, size1, arr2, size2, arr3);
+
+    
+    printf("Merged and Sorted Array:\n");
+    for(i = 0; i < size1 + size2; i++)
+        printf("%d ", arr3[i]);
+    printf("\n");
+
+    return 0;
+}
+
+
+void mergeAndSort(int arr1[], int size1, int arr2[], int size2, int arr3[]) {
+    int i, j, k, temp;
+
+    
+    for(i = 0; i < size1; i++)
+        arr3[i] = arr1[i]; 
+    for(j = 0; j < size2; j++)
+        arr3[size1 + j] = arr2[j]; 
+
+
+
+    for(i = 0; i < (size1 + size2) - 1; i++) {
+        for(j = 0; j < (size1 + size2) - i - 1; j++) {
+            if(arr3[j] > arr3[j + 1]) {
+                temp = arr3[j];
+                arr3[j] = arr3[j + 1];
+                arr3[j + 1] = temp;
+            }
+        }
+    }
+}
